@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:3000";
+const API_BASE_URL = "https://finance-tracker-be-8bfo.onrender.com";
 
 export async function getExpenses() {
   const res = await fetch(`${API_BASE_URL}/expenses`);
