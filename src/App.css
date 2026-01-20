@@ -1,42 +1,99 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+    sans-serif;
+  background-color: #f5f7fb;
+  margin: 0;
+  padding: 0;
+}
+
+.app-container {
+  max-width: 420px;
+  margin: 60px auto;
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+h2 {
   text-align: center;
+  margin-bottom: 24px;
+  color: #333;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+form {
+  margin-bottom: 20px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+input {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  font-size: 14px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+input:focus {
+  outline: none;
+  border-color: #6366f1;
 }
 
-.card {
-  padding: 2em;
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #6366f1;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
 }
 
-.read-the-docs {
+button:hover {
+  background-color: #4f46e5;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #eee;
+  margin: 20px 0;
+}
+
+.expense-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.expense-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 14px;
+}
+
+.expense-item:last-child {
+  border-bottom: none;
+}
+
+.amount {
+  font-weight: 600;
+  color: #111;
+}
+
+.description {
+  color: #555;
+}
+
+.date {
+  font-size: 12px;
   color: #888;
+}
+.loading {
+  text-align: center;
+  color: #666;
+  font-size: 16px;
 }

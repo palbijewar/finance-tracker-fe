@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getExpenses, createExpense } from "./api";
+import "./App.css";
 
 function App() {
   const [expenses, setExpenses] = useState([]);
@@ -43,28 +44,24 @@ function App() {
   }
 
   return (
-    <div style={{ padding: "20px", maxWidth: "400px" }}>
+    <div className="app-container">
       <h2>Expense Tracker</h2>
 
       <form onSubmit={handleSubmit}>
-        <div>
-          <input
-            type="number"
-            placeholder="Amount"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-            required
-          />
-        </div>
+        <input
+          type="number"
+          placeholder="Amount (₹)"
+          value={amount}
+          onChange={(e) => setAmount(e.target.value)}
+          required
+        />
 
-        <div>
-          <input
-            type="text"
-            placeholder="Description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-        </div>
+        <input
+          type="text"
+          placeholder="Description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
 
         <button type="submit">Add Expense</button>
       </form>
@@ -73,16 +70,33 @@ function App() {
 
       {loading && <p>Loading...</p>}
 
-      {!loading && expenses.length === 0 && <p>No expenses yet</p>}
+      {!loading && expenses.length === 0 && (
+        <p style={{ textAlign: "center", color: "#777" }}>
+          No expenses yet
+        </p>
+      )}
 
       {!loading && expenses.length > 0 && (
-        <ul>
-          {expenses.map((e) => (
-            <li key={e.id}>
-              ₹{e.amount} — {e.description}
-            </li>
-          ))}
+        <ul className="expense-list">
+          {expenses.map((e) => {
+            const date = new Date(e.created_at).toLocaleDateString("en-IN", {
+              day: "2-digit",
+              month: "short",
+              year: "numeric",
+            });
+
+            return (
+              <li key={e.id} className="expense-item">
+                <div>
+                  <div className="description">{e.description || "—"}</div>
+                  <div className="date">{date}</div>
+                </div>
+                <span className="amount">₹{e.amount}</span>
+              </li>
+            );
+          })}
         </ul>
+
       )}
     </div>
   );
