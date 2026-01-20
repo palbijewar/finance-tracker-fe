@@ -1,25 +1,31 @@
-const API_BASE_URL = "http://localhost:4000";
+const API_BASE_URL = "http://localhost:3000";
 
 export async function getExpenses() {
-  const response = await fetch(`${API_BASE_URL}/expenses`);
-  if (!response.ok) {
-    throw new Error("Failed to fetch expenses");
-  }
-  return response.json();
+  const res = await fetch(`${API_BASE_URL}/expenses`);
+  return res.json();
 }
 
-export async function createExpense(expense) {
-  const response = await fetch(`${API_BASE_URL}/expenses`, {
+export async function createExpense(data) {
+  const res = await fetch(`${API_BASE_URL}/expenses`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(expense),
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
   });
+  return res.json();
+}
 
-  if (!response.ok) {
-    throw new Error("Failed to create expense");
-  }
+export async function updateExpense(id, data) {
+  const res = await fetch(`${API_BASE_URL}/expenses/${id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+  return res.json();
+}
 
-  return response.json();
+export async function deleteExpense(id) {
+  const res = await fetch(`${API_BASE_URL}/expenses/${id}`, {
+    method: "DELETE",
+  });
+  return res.json();
 }
